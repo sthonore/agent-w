@@ -142,26 +142,30 @@ Always confirm the resolved destination before running Git commands.
 
 ## Mandatory Confirmation
 
-Before cloning or refreshing code, show the user a confirmation like:
-```text
+Before cloning or refreshing code, show the user a confirmation using markdown
+formatting so paths are readable and the prompt stands out. Example:
+
+---
 I will get the code for:
 
-Repository: WithAgency/CAMC3
-Git URL: git@github.com:WithAgency/CAMC3.git
-Branch: develop
-Project workspace: /Users/alice/Documents/Clients/ACME/Website Redesign
-Code destination: /Users/alice/Documents/Clients/ACME/Website Redesign/code/CAMC3
+**Repository:** WithAgency/CAMC3  
+**Git URL:** `git@github.com:WithAgency/CAMC3.git`  
+**Branch:** `develop`  
+**Project workspace:** `/Users/alice/Documents/Clients/ACME/Website Redesign`  
+**Code destination:** `/Users/alice/Documents/Clients/ACME/Website Redesign/code/CAMC3`
 
-I will only create or refresh the repository at the code destination.
+I will only create or refresh the repository at the code destination.  
 I will not touch your other project files.
 
 If the code already exists locally at this destination, I will refresh it so it
-exactly matches origin/develop. Any local edits in that checkout will be discarded.
+exactly matches the latest shared develop branch. Any local edits in that checkout
+will be discarded.
 
-Continue?
-```
+**Continue?**
+
+---
 If the user explicitly provided a full destination path and there is no project
-workspace, omit the "Project workspace" line from the confirmation.
+workspace, omit the **Project workspace** line from the confirmation.
 
 Do not proceed until the user confirms.
 
@@ -415,27 +419,26 @@ hard stop. Never delete, rename, or overwrite folders.
 
 ## Final Output
 
-When successful, provide a concise summary:
-```text
-Code is ready.
+When successful, provide a concise summary using markdown formatting. Example:
 
-Repository: git@github.com:OWNER/REPO.git
-Project workspace: /resolved/project/workspace
-Code path: /resolved/project/workspace/code/REPO
-Branch: develop
-Synced to: origin/develop
-Commit: SHORT_HASH Commit title
-Submodules: initialized/updated
-Status: clean
-```
-Omit the "Project workspace" line if no project workspace was identified (i.e., the
-user provided an explicit full destination path).
+---
+**Code is ready.**
 
-Then add:
-```text
+**Repository:** `git@github.com:OWNER/REPO.git`  
+**Project workspace:** `/resolved/project/workspace`  
+**Code path:** `/resolved/project/workspace/code/REPO`  
+**Branch:** `develop`  
+**Synced to:** `origin/develop`  
+**Commit:** `SHORT_HASH` Commit title  
+**Submodules:** initialized/updated  
+**Status:** clean
+
 You can now use this path as grounding for review, Linear analysis, planning, QA,
 or documentation work.
-```
+
+---
+Omit the **Project workspace** line if no project workspace was identified (i.e., the
+user provided an explicit full destination path).
 ## Important Notes for PM-Friendly Behavior
 
 - Do not ask the user Git-specific questions such as whether to merge, rebase,
